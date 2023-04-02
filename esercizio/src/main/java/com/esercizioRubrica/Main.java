@@ -29,13 +29,13 @@ public class Main {
     }
 
     @PostMapping
-    public void aggiungiContatto(@RequestBody RichiestaContatto richiestaContatto) {
+    public void aggiungiContatto(@RequestBody RichiestaContatto aggiungiContatto) {
         ContattoRubrica contattoRubrica = new ContattoRubrica();
-        contattoRubrica.setNumero(richiestaContatto.getNumero());
-        contattoRubrica.setNome(richiestaContatto.getNome());
-        contattoRubrica.setCognome(richiestaContatto.getCognome());
-        contattoRubrica.setEmail(richiestaContatto.getEmail());
-        contattoRubrica.setSocieta(richiestaContatto.getSocieta());
+        contattoRubrica.setNumero(aggiungiContatto.getNumero());
+        contattoRubrica.setNome(aggiungiContatto.getNome());
+        contattoRubrica.setCognome(aggiungiContatto.getCognome());
+        contattoRubrica.setEmail(aggiungiContatto.getEmail());
+        contattoRubrica.setSocieta(aggiungiContatto.getSocieta());
         rubricaRepository.save(contattoRubrica);
     }
 
@@ -45,13 +45,24 @@ public class Main {
     }
 
     @PutMapping("{contattoId}")
-    public void aggiornaContatto (@RequestBody RichiestaContatto updContatto, @PathVariable("contattoId") Integer id) {
+    public void aggiornaContatto (@RequestBody RichiestaContatto aggiornaContatto, @PathVariable("contattoId") Integer id) {
         ContattoRubrica contattoRubrica = rubricaRepository.findById(id).orElseThrow();
-        contattoRubrica.setNumero(updContatto.getNumero());
-        contattoRubrica.setNome(updContatto.getNome());
-        contattoRubrica.setCognome(updContatto.getCognome());
-        contattoRubrica.setEmail(updContatto.getEmail());
-        contattoRubrica.setSocieta(updContatto.getSocieta());
+        //Inserisco i controlli per far sì che si possa fare l'update anche solo di alcuni attributi
+        if (aggiornaContatto.getNumero() != null) {
+            contattoRubrica.setNumero(aggiornaContatto.getNumero());
+        }
+        if (aggiornaContatto.getNome() != null) {
+            contattoRubrica.setNome(aggiornaContatto.getNome());
+        }
+        if (aggiornaContatto.getCognome() != null) {
+            contattoRubrica.setCognome(aggiornaContatto.getCognome());
+        }
+        if (aggiornaContatto.getEmail() != null) {
+            contattoRubrica.setEmail(aggiornaContatto.getEmail());
+        }
+        if (aggiornaContatto.getSocieta() != null) {
+            contattoRubrica.setSocieta(aggiornaContatto.getSocieta());
+        }
         rubricaRepository.save(contattoRubrica);
     }
 }

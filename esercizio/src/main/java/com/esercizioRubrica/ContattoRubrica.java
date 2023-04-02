@@ -18,11 +18,11 @@ public class ContattoRubrica {
     private String numero;
     @NotNull
     private String nome;
-    @NotNull
+    //@NotNull
     private String cognome;
-    @NotNull
+    //@NotNull
     private String societa;
-    @NotNull
+    //@NotNull
     private String email;
 
     public Integer getId() {

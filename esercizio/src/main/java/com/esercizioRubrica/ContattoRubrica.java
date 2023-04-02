@@ -1,8 +1,11 @@
 package com.esercizioRubrica;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 
@@ -11,11 +14,15 @@ public class ContattoRubrica {
     @Id
     @GeneratedValue
     private Integer id;
-
+    @NotNull
     private String numero;
+    @NotNull
     private String nome;
+    @NotNull
     private String cognome;
+    @NotNull
     private String societa;
+    @NotNull
     private String email;
 
     public Integer getId() {

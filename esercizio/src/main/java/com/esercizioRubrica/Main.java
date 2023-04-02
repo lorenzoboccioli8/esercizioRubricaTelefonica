@@ -1,7 +1,9 @@
 package com.esercizioRubrica;
 
+import jakarta.annotation.Nonnull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -42,7 +44,6 @@ public class Main {
         rubricaRepository.deleteById(id);
     }
 
-    //da implementare!!!
     @PutMapping("{contattoId}")
     public void aggiornaContatto (@RequestBody RichiestaContatto updContatto, @PathVariable("contattoId") Integer id) {
         ContattoRubrica contattoRubrica = rubricaRepository.findById(id).orElseThrow();
